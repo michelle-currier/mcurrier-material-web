@@ -3,65 +3,50 @@ import { Button, Container, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { Link } from 'react-router-dom';
+import { indigo, lime, pink } from "@mui/material/colors";
 
 const StyledButton = styled(Button)(() => ({
   backgroundColor: "#f6ccff",
 }));
-
+const StyledLink = styled(Link)(() => ({
+    backgroundColor: lime[400],
+    color: pink[500],
+    fontWeight: 700,
+    textDecoration: "none",
+  }));
 const Home = () => {
   return (
     <>
       <Container maxWidth="md">
         
-        <Stack spacing={2}>
-          <Stack direction="row" spacing={2} sx={{ alignItems: "end" }}>
-            <Typography variant="h1">m. currier</Typography>
-            
-            <Typography variant="h2">Hello</Typography>
-            <Typography variant="subtitle1">Hello</Typography>
-            <Typography variant="subtitle2">Hello</Typography>
-          </Stack>
-          <Stack direction="row" spacing={2}>
-            <Button variant="contained">Contained primary button</Button>
-            <Button variant="contained" color="secondary">
-              Secondary Button
-            </Button>
-            <Button variant="outlined" color="primary" disableRipple>
-              Contained outlined button
-            </Button>
-            <Button variant="contained" color="success">
-              Success Button
-            </Button>
-            <StyledButton variant="outlined" color="primary">
-              Styled button
-            </StyledButton>
-          </Stack>
-          <Stack direction="row" spacing={2}>
-            <Fab color="primary">
-              <AddIcon />
-            </Fab>
-            <Fab color="secondary" size="medium" variant="square">
-              <AddIcon />
-            </Fab>
-            <Fab color="success" size="small">
-              <AddIcon />
-            </Fab>
-          </Stack>
-        </Stack>
-        <Stack>
+      
+          
+            <Typography> 
+                <h1 variant="h1">A curious designer who codes...</h1>
+                
+                <p>I bring 10 plus years of experience blending a formal background in print, web, and graphic design on top of success in SaaS and app creation specifically in the Front-end and UX/UI roles.
+
+</p>
+            </Typography>
+        
+       
         <h1>m. currier </h1>
             <p>https://github.com/RidhwanDev/mui-theming/
               
             </p>
             <p>colors</p>
             <ul>
-              <li><a href="https://m2.material.io/inline-tools/color/" target="_blank">https://m2.material.io/inline-tools/color/</a></li>
+                <li><StyledLink to={{ pathname: "//mui.com/material-ui/" }} target="_blank">MUI customization</StyledLink></li>
+            <li><StyledLink to={{ pathname: "https://m2.material.io/inline-tools/color/"}} target="_blank">https://m2.material.io/inline-tools/color/</StyledLink>
+            </li>
+              {/* <li><StyledLink><a href="https://m2.material.io/inline-tools/color/" target="_blank" >https://m2.material.io/inline-tools/color/</a></StyledLink></li> */}
               <li>
-  <a href="https://mui.com/material-ui/customization/color/">https://mui.com/material-ui/customization/color/</a>
+              <Link underline="hover" to={{ pathname: "https://mui.com/material-ui/customization/color/" }} target="_blank">https://mui.com/material-ui/customization/color/</Link>
               </li>
             </ul>
             
-        </Stack>
+       
         
         
       </Container>

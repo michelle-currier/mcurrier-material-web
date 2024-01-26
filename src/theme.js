@@ -1,7 +1,17 @@
 import { createTheme, responsiveFontSizes } from "@mui/material";
 import { indigo, lime, pink } from "@mui/material/colors";
 
+
+
 const theme = createTheme({
+  typography: {
+    allVariants: {
+      fontFamily: 'Montserrat',
+      textTransform: 'none',
+      fontSize: 16,
+    },
+    
+  },
   palette: {
     mode: 'dark',
     primary: {
@@ -58,7 +68,15 @@ const theme = createTheme({
         },
       ],
     },
+    MuiLink: {
+  
+        textDecoration: "none",
+        fontWeight: 700,
+        color: pink[400],
+      
+    }
   },
+   
 });
 
 export default responsiveFontSizes(theme);
