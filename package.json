@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@carbon/react": "^1.35.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.9",
-    "@carbon/react": "^1.35.0",
+    "@mui/x-data-grid": "^6.19.2",
     "@octokit/core": "4.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
