@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 import { Link as RouterLink } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Portfolio', 'Repos', 'ReposDos'];
+const navItems = ['Home', 'About', 'Portfolio', 'Repos'];
 // const navItems = [
 //   { text: 'Home', path: '/' },
 //   { text: 'About', path: '/about' },
@@ -110,13 +110,13 @@ function DrawerAppBar(props) {
   );
 }
 
-DrawerAppBar.propTypes = {
+// DrawerAppBar.propTypes = {
     
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
+//   /**
+//    * Injected by the documentation to work in an iframe.
+//    * You won't need it on your project.
+//    */
+//   window: PropTypes.func,
+// };
 
 export default DrawerAppBar;

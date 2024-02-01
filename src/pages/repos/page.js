@@ -1,16 +1,17 @@
 'use client';
 
-import RepoTable from './RepoTable';
 import {
   Link,
-  DataTableSkeleton,
-  Pagination,
-  Column,
-  Grid,
 } from '@carbon/react';
 
+import Box from '@mui/material/Box';
+import { DataGrid } from '@mui/x-data-grid';
 import React, { useEffect, useState } from 'react';
 import { Octokit } from '@octokit/core';
+import { indigo, lime, pink } from "@mui/material/colors";
+import { styled } from "@mui/system";
+import { Container, Typography } from '@mui/material';
+
 
 const octokitClient = new Octokit({});
 
@@ -28,35 +29,99 @@ const headers = [
     header: 'Updated',
   },
   {
-    key: 'issueCount',
-    header: 'Open Issues',
-  },
-  {
-    key: 'stars',
-    header: 'Stars',
-  },
-  {
     key: 'links',
     header: 'Links',
   },
 ];
+const columns = [
+  {
+    field: 'name',
+    headerName: 'Name',
+    flex: 1,
+  },
+  {
+    field: 'createdAt',
+    headerName: 'Created',
+  },
+  {
+    field: 'updatedAt',
+    headerName: 'Updated',
+  },
+  {
+    field: 'links',
+    headerName: 'Links',
+    flex: 1,
+      renderCell: (params) => (
+        <LinkList
+          url={params.row.html_url}
+          homepageUrl={params.row.homepage}
+        />
+      ),
+  },
+]
+// styles
+const StyledLink = styled(Link)(() => ({
+  backgroundColor: lime[300],
+  color: indigo[500],
+  fontWeight: 700,
+  textDecoration: "none",
+  padding: 2,
+  borderRadius: 4,
+  cursor: "pointer",
+}));
+const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+  border: 0,
+  color:
+    theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.85)',
+    WebkitFontSmoothing: 'auto',
+    letterSpacing: 'normal',
+    '& .MuiDataGrid-columnsContainer': {
+      backgroundColor: theme.palette.mode === 'light' ? '#fafafa' : '#1d1d1d',
+    },
+    '& .MuiDataGrid-iconSeparator': {
+      display: 'none',
+    },
+    '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
+
+      borderRight: `1px solid ${
+        theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
+      }`,
+    },
+    '& .MuiDataGrid-columnHeaderTitle': {
+      color: indigo[300],
+      fontWeight: 600,
+    },
+    '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
+      
+      borderBottom: `1px solid ${
+        theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
+      }`,
+    },
+    '& .MuiDataGrid-cell': {
+      color:
+        theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.65)',
+    },
+    '& .MuiPaginationItem-root': {
+      borderRadius: 0,
+    },
+  }));
+
 
 const LinkList = ({ url, homepageUrl }) => (
-  <ul style={{ display: 'flex' }}>
+  <ul style={{ display: 'flex' ,listStyleType: 'none' }}>
     <li>
-      <Link href={url} target="_blank">
+      <StyledLink href={url} target="_blank" underline="hover">
         GitHub
-      </Link>
+      </StyledLink>
     </li>
     {homepageUrl && (
       <li>
         <span>&nbsp;|&nbsp;</span>
-        <Link href={homepageUrl}>Homepage</Link>
+        <StyledLink href={homepageUrl} target="_blank" >Homepage</StyledLink>
       </li>
     )}
   </ul>
 );
-
 const getRowItems = (rows) =>
   rows.map((row) => ({
     ...row,
@@ -65,7 +130,7 @@ const getRowItems = (rows) =>
     issueCount: row.open_issues_count,
     createdAt: new Date(row.created_at).toLocaleDateString(),
     updatedAt: new Date(row.updated_at).toLocaleDateString(),
-    links: <LinkList url={row.html_url} homepageUrl={row.homepage} />,
+    links: <LinkList url={row.html_url} homepageUrl={row.homepage} å/>,
   }));
 
 function RepoPage() {
@@ -77,12 +142,6 @@ function RepoPage() {
 
   useEffect(() => {
     async function getCarbonRepos() {
-      // const res = await octokitClient.request('GET /orgs/{org}/repos', {
-      //   org: 'carbon-design-system',
-      //   per_page: 75,
-      //   sort: 'updated',
-      //   direction: 'desc',
-      // });
       const res = await octokitClient.request('GET /users/{username}/repos', {
         username: 'michelle-currier',
         // username: 'mushel',
@@ -103,7 +162,12 @@ function RepoPage() {
 
   if (loading) {
     return (
-      <Grid className="repo-page">
+
+      <>
+      
+      
+
+      {/* <Grid className="repo-page">
         <Column lg={16} md={8} sm={4} className="repo-page__r1">
           <DataTableSkeleton
             columnCount={headers.length + 1}
@@ -111,7 +175,9 @@ function RepoPage() {
             headers={headers}
           />
         </Column>
-      </Grid>
+      </Grid> */}
+      </>
+      
     );
   }
 
@@ -120,28 +186,29 @@ function RepoPage() {
   }
 
   return (
-    <Grid className="repo-page">
-      <Column lg={16} md={8} sm={4} className="repo-page__r1">
-        <RepoTable
-          headers={headers}
-          rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
-        />
-        <Pagination
-          totalItems={rows.length}
-          backwardText="Previous page"
-          forwardText="Next page"
-          pageSize={currentPageSize}
-          pageSizes={[5, 10, 15, 25]}
-          itemsPerPageText="Items per page"
-          onChange={({ page, pageSize }) => {
-            if (pageSize !== currentPageSize) {
-              setCurrentPageSize(pageSize);
-            }
-            setFirstRowIndex(pageSize * (page - 1));
-          }}
-        />
-      </Column>
-    </Grid>
+    <Container maxWidth="lg">
+    <Box sx={{ flexGrow: 1 }}> 
+      <Typography>
+            
+            
+      <h1>Michelle Currier's GitHub</h1>
+      </Typography>
+      <StyledDataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
+        checkboxSelection
+        disableRowSelectionOnClick
+      />
+      </Box>
+      </Container>
   );
 }
 

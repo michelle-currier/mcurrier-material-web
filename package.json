@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@availity/mui-tabs": "^0.1.6",
     "@carbon/react": "^1.35.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

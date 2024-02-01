@@ -9,12 +9,8 @@ import {
   Grid,
 } from '@carbon/react';
 
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
 import React, { useEffect, useState } from 'react';
 import { Octokit } from '@octokit/core';
-import { indigo, lime, pink } from "@mui/material/colors";
-import { styled } from "@mui/system";
 
 const octokitClient = new Octokit({});
 
@@ -44,67 +40,23 @@ const headers = [
     header: 'Links',
   },
 ];
-const columns = [
-  {
-    field: 'name',
-    headerName: 'Name',
-    flex: 1,
-  },
-  {
-    field: 'createdAt',
-    headerName: 'Created',
-  },
-  {
-    field: 'updatedAt',
-    headerName: 'Updated',
-  },
-  {
-    field: 'issueCount',
-    headerName: 'Open Issues',
-  },
-  {
-    field: 'stars',
-    headerName: 'Stars',
-  },
-  {
-    field: 'links',
-    headerName: 'Links',
-    flex: 1,
-      renderCell: (params) => (
-        <LinkList
-          url={params.row.html_url}
-          homepageUrl={params.row.homepage}
-        />
-      ),
-  },
-]
-const StyledLink = styled(Link)(() => ({
-  backgroundColor: lime[400],
-  color: pink[500],
-  fontWeight: 700,
-  textDecoration: "none",
-  padding: 2,
-  borderRadius: 4,
-  cursor: "pointer",
-}));
-
-
 
 const LinkList = ({ url, homepageUrl }) => (
-  <ul style={{ display: 'flex' ,listStyleType: 'none' }}>
+  <ul style={{ display: 'flex' }}>
     <li>
-      <StyledLink href={url} target="_blank" underline="hover">
+      <Link href={url} target="_blank">
         GitHub
-      </StyledLink>
+      </Link>
     </li>
     {homepageUrl && (
       <li>
         <span>&nbsp;|&nbsp;</span>
-        <StyledLink href={homepageUrl}>Homepage</StyledLink>
+        <Link href={homepageUrl}>Homepage</Link>
       </li>
     )}
   </ul>
 );
+
 const getRowItems = (rows) =>
   rows.map((row) => ({
     ...row,
@@ -151,12 +103,7 @@ function RepoPage() {
 
   if (loading) {
     return (
-
-      <>
-      
-      
-
-      {/* <Grid className="repo-page">
+      <Grid className="repo-page">
         <Column lg={16} md={8} sm={4} className="repo-page__r1">
           <DataTableSkeleton
             columnCount={headers.length + 1}
@@ -164,9 +111,7 @@ function RepoPage() {
             headers={headers}
           />
         </Column>
-      </Grid> */}
-      </>
-      
+      </Grid>
     );
   }
 
@@ -175,23 +120,28 @@ function RepoPage() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}> 
-
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
-      </Box>
+    <Grid className="repo-page">
+      <Column lg={16} md={8} sm={4} className="repo-page__r1">
+        <RepoTable
+          headers={headers}
+          rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
+        />
+        <Pagination
+          totalItems={rows.length}
+          backwardText="Previous page"
+          forwardText="Next page"
+          pageSize={currentPageSize}
+          pageSizes={[5, 10, 15, 25]}
+          itemsPerPageText="Items per page"
+          onChange={({ page, pageSize }) => {
+            if (pageSize !== currentPageSize) {
+              setCurrentPageSize(pageSize);
+            }
+            setFirstRowIndex(pageSize * (page - 1));
+          }}
+        />
+      </Column>
+    </Grid>
   );
 }
 

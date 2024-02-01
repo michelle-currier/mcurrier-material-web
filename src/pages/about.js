@@ -11,46 +11,45 @@ const StyledButton = styled(Button)(() => ({
  
 export default function About() {
     return (
-
-        <>
+      <>
         <Container maxWidth="md">
-        <div>
+          <div>
             <h1>About</h1>
-        </div>
-<Stack>
-<Stack direction="row" spacing={2} sx={{ alignItems: "end" }}>
-<Typography variant="h2">Hello</Typography>
-<Typography variant="subtitle1">Hello</Typography>
-<Typography variant="subtitle2">Hello</Typography>
-</Stack>
-<Stack direction="row" spacing={2}>
-<Button variant="contained">Contained primary button</Button>
-<Button variant="contained" color="secondary">
-  Secondary Button
-</Button>
-<Button variant="outlined" color="primary" disableRipple>
-  Contained outlined button
-</Button>
-<Button variant="contained" color="success">
-  Success Button
-</Button>
-<StyledButton variant="outlined" color="primary">
-  Styled button
-</StyledButton>
-</Stack>
-<Stack direction="row" spacing={2}>
-<Fab color="primary">
-  <AddIcon />
-</Fab>
-<Fab color="secondary" size="medium" variant="square">
-  <AddIcon />
-</Fab>
-<Fab color="success" size="small">
-  <AddIcon />
-</Fab>
-</Stack>
-</Stack>
-</Container>
-</>
+          </div>
+          <Stack>
+            <Stack direction="row" spacing={2} sx={{ alignItems: "end" }}>
+              <Typography variant="h1"><h1>Hello</h1></Typography>
+              <Typography><h2 variant="subtitle1">Hello</h2></Typography>
+              <Typography variant="subtitle2"><p>Hello</p></Typography>
+            </Stack>
+            <Stack direction="row" spacing={2}>
+              <Button variant="contained">Contained primary button</Button>
+              <Button variant="contained" color="secondary">
+                Secondary Button
+              </Button>
+              <Button variant="outlined" color="primary" disableRipple>
+                Contained outlined button
+              </Button>
+              <Button variant="contained" color="success">
+                Success Button
+              </Button>
+              <StyledButton variant="outlined" color="primary">
+                Styled button
+              </StyledButton>
+              </Stack>
+              <Stack direction="row" spacing={2}>
+              <Fab color="primary">
+                <AddIcon />
+              </Fab>
+              <Fab color="secondary" size="medium" variant="square">
+                <AddIcon />
+              </Fab>
+              <Fab color="success" size="small">
+                <AddIcon />
+              </Fab>
+            </Stack>
+          </Stack>
+        </Container>
+      </>
     )
 }

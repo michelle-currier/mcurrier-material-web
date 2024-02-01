@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import PortfolioTabs from "./../components/porfolioTabs";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -33,6 +34,7 @@ const Portfolio = () => {
   </Grid>
   <Grid item xs={8}>
     <Item>xs=8</Item>
+      <PortfolioTabs />
   </Grid>
 </Grid>
 </Box>    

@@ -5,7 +5,7 @@ import Home from './pages/home';
 import About from './pages/about';
 import Portfolio from './pages/portfolio';
 import Repos from './pages/repos/page';
-import ReposDos from './pages/reposDos/page';
+
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -27,9 +27,6 @@ function App() {
           </Route>
           <Route path="/repos">
             <Repos />
-          </Route>
-          <Route path="/reposDos">
-            <ReposDos />
           </Route>
         </Switch>
       </div>
