@@ -28,6 +28,7 @@ function App() {
           <Route path="/repos">
             <Repos />
           </Route>
+          <Route path="*" component={Home} />
         </Switch>
       </div>
     </div>

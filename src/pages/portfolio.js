@@ -24,6 +24,9 @@ const Portfolio = () => {
   
     <Item>xs=8
     <h1 variant="h2">Portfolio</h1> 
+    <h2>Revolutionize Your Development Workflow: From overwriting woes to seamless GitHub powered solutions</h2>
+<h3>Consulting Academy documentation</h3>
+<p>An example of a Consulting Academy module template in Github. This showcases the documentation with steps on how-to run on your local with Gulp and preps for bundling to deploy.</p>
     </Item>
   </Grid>
   <Grid item xs={4}>
