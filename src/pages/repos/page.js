@@ -10,7 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { Octokit } from '@octokit/core';
 import { indigo, lime, pink } from "@mui/material/colors";
 import { styled } from "@mui/system";
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Grid } from '@mui/material';
 
 
 const octokitClient = new Octokit({});
@@ -23,6 +23,7 @@ const headers = [
   {
     key: 'createdAt',
     header: 'Created',
+  
   },
   {
     key: 'updatedAt',
@@ -42,10 +43,12 @@ const columns = [
   {
     field: 'createdAt',
     headerName: 'Created',
+    width: 106,
   },
   {
     field: 'updatedAt',
     headerName: 'Updated',
+    width: 106,
   },
   {
     field: 'links',
@@ -187,12 +190,19 @@ function RepoPage() {
 
   return (
     <Container maxWidth="lg">
+      <Grid container spacing={4}>
+        <Grid item xs={10}>
+          <Typography>
+            <h1>Michelle Currier's GitHub</h1>
+          </Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <img src='github-icon-white.png' className='responsive-img'></img>
+        </Grid>
+      </Grid>
     <Box sx={{ flexGrow: 1 }}> 
-      <Typography>
-            
-            
-      <h1>Michelle Currier's GitHub</h1>
-      </Typography>
+      
+
       <StyledDataGrid
         rows={rows}
         columns={columns}

@@ -43,3 +43,19 @@
 .MuiDataGrid-columnHeaderTitle {
   font-weight: bold;
 }
+
+a {
+  color: #d500f9;
+  text-decoration: none;
+  border-bottom: 3px solid;
+}
+button a {
+  border-bottom: none;
+}
+img.responsive-img {
+  width: 100%;
+  height: auto;
+}
+.MuiCardMedia-root.responsive-img {
+  background-size: contain;
+}

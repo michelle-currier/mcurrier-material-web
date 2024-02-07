@@ -1,37 +1,40 @@
 import { React } from 'react';
-import { Button, Container, Stack, Typography } from "@mui/material";
+import { Button, Container, Stack, Typography, Grid } from "@mui/material";
 import { styled } from "@mui/system";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from 'react-router-dom';
-import { indigo, lime, pink } from "@mui/material/colors";
+import { blueGrey, deepPurple, indigo, lightGreen, lime, pink } from "@mui/material/colors";
 
-const StyledButton = styled(Button)(() => ({
-  backgroundColor: "#f6ccff",
-}));
+
 const StyledLink = styled(Link)(() => ({
-    backgroundColor: lime[400],
-    color: pink[500],
+    backgroundColor: lightGreen[600],
+
+    color: deepPurple[700],
     fontWeight: 700,
     textDecoration: "none",
+    borderRadius: 3,
   }));
 const Home = () => {
   return (
     <>
-      <Container maxWidth="md">
-        
-      
-          
-            <Typography> 
-                <h1 variant="h1">A curious designer who codes...</h1>
+      <Container maxWidth="md">  
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+        <Typography> 
+                <h1 variant="primary">A curious designer who codes...</h1>
                 
                 <p>I bring 10 plus years of experience blending a formal background in print, web, and graphic design on top of success in SaaS and app creation specifically in the Front-end and UX/UI roles.
-
 </p>
             </Typography>
+        </Grid>
+        <Grid item xs={4}>
         
-       
-        <h1>m. currier </h1>
+         <img src='headshot.png' className='responsive-img'></img>
+        </Grid>
+      </Grid>
+            
+        <h3>under construction!</h3>
             <p>https://github.com/RidhwanDev/mui-theming/
               
             </p>
@@ -42,24 +45,16 @@ const Home = () => {
             </li>
               {/* <li><StyledLink><a href="https://m2.material.io/inline-tools/color/" target="_blank" >https://m2.material.io/inline-tools/color/</a></StyledLink></li> */}
               <li>
-              <Link underline="hover" to={{ pathname: "https://mui.com/material-ui/customization/color/" }} target="_blank">https://mui.com/material-ui/customization/color/</Link>
+              <Link color="success" underline="hover" to={{ pathname: "https://mui.com/material-ui/customization/color/" }} target="_blank">https://mui.com/material-ui/customization/color/</Link>
               </li>
             </ul>
             
        
-        
+            <Link to="https://drive.google.com/file/d/1oJ4x2FpTC3pL-Zh5OLMLLBRlLC7e3gfX/view?usp=sharing" target="_blank"><Button variant='contained' color='error'>Porfolio Packet</Button></Link>
         
       </Container>
      </> 
     );
   }
 
- 
-// export default function Home() {
-//     return (
-//         <div>
-//             <h1>Page 1</h1>
-//         </div>
-//     )
-// }
 export default Home;

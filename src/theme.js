@@ -1,5 +1,5 @@
 import { createTheme, responsiveFontSizes } from "@mui/material";
-import { indigo, lime, pink } from "@mui/material/colors";
+import { blueGrey, deepPurple, indigo, lightGreen, pink } from "@mui/material/colors";
 
 
 
@@ -18,11 +18,18 @@ const theme = createTheme({
       main: indigo[500],
     },
     secondary: {
-      main: lime[400],
+      main: lightGreen[500],
     },
     success: {
+      main: blueGrey[800],
+    },
+    error: {
       main: pink[400],
     },
+    info: {
+      main: deepPurple[500],
+    }
+    
   },
   components: {
     MuiButton: {
@@ -30,21 +37,12 @@ const theme = createTheme({
         outlinedPrimary: {
           borderRadius: 20,
         },  
-        containedPrimary: {
+        contained: {
             fontWeight: 700,
         },
-        outlinedPrimary: {
+        outlined: {
             fontWeight: 700,
         },
-        containedSuccess: {
-            fontWeight: 700,
-        },
-        outlinedSecondary: {
-            fontWeight: 700,
-        },
-        containedSecondary: {
-            fontWeight: 700,
-        }
       },
     },
     MuiFab: {
@@ -63,17 +61,24 @@ const theme = createTheme({
         {
           props: { variant: "square" },
           style: {
-            borderRadius: 20,
+            borderRadius: 10,
           },
         },
       ],
     },
     MuiLink: {
-  
+      defaultProps: {
         textDecoration: "none",
         fontWeight: 700,
         color: pink[400],
-      
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        selected: {
+          fontWeight: 700,
+        }
+      }
     }
   },
    
